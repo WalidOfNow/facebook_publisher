@@ -12,23 +12,39 @@ block content
             a(href='#') User
           li
             a(href='#') About
+        ul.nav.pull-right
+          li
+            a.brand(class='pull-right') #{user.first_name}
+          li
+            a(href='/logout',class='pull-right') Logout
   .container
     .row-fluid
       .span3
         .well
-          h4 Your Groups...
-          input(type='checkbox')
-          
+          h5 <b>Groups...</b>
+        .well.scrollbar#style-1
+          each item, i in groups
+            label(class='checkbox') #{item.name}
+              input(type='checkbox',id='#{item.id}')
+              hr
       .span7
         .well
           h4 Type your post...
-          form(name='publisher',action='//',method='post')
-          textarea(type='text',name='textinput' , class='span10' ,rows = '2')
-          br
-          input(type='submit',value='Publish It !',class= 'btn btn-success pull-right')
+            textarea(type='text',name='textinput' , class='span10',name='text' )
+            br
+            input(type='checkbox',id='me')
+            input(type='submit',value='Publish It !',class= 'btn btn-success pull-right')
+
+
       .span2
         .well
-          h4 User Info..
-    .container
+          h5 User Info..
+          <strong>User :</strong>
+          p(class='text-info')     #{user.name}
+          <strong>location :</strong>
+          p(class="text-success")   #{user.location.name}
+block scripts
+    script(src='/javascript/jquery.js')
+    script(src='/javascript/load.js')
 
         
