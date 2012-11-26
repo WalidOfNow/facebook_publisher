@@ -4,10 +4,8 @@ block content
   .navbar.navbar-inverse.navbar-fixed-top
     .navbar-inner
       .container
-        a.brand(href='/') Wikitechie Facebook Publisher
+        a.brand(href='/') Wikilogia Storm Publisher
         ul.nav
-          li
-            a(href='#') Home
           li
             a(href='#') User
           li
@@ -19,7 +17,7 @@ block content
             a(href='/logout',class='pull-right') Logout
   .container
     .row-fluid
-        form(method='post', action='/post')
+        form(method='post', action='/post',id='form1')
           .span3
             .well
                h5 <b>Groups...</b>
@@ -27,14 +25,17 @@ block content
                each item, i in groups
                  label(class='checkbox') #{item.name}
                    input(type='checkbox',name='checkbox[#{item.id}]',id='#{item.id}')
-               hr
+                 hr
           .span7
             .well
               h4 Type your post..
-              textarea(type='text',name='textinput' , class='span10',name='text' )
+              textarea(type='text' , class='span10',name='text' )
               br
-              input(type='checkbox',id='me')
-              input(type='submit',value='Publish It !',class= 'btn btn-success pull-right')
+              label(class='checkbox') Post on my wall
+                input(type='checkbox',name='me')
+              input(type='file',name="upload",accept='image/*')
+              input(type='submit',value='Publish It !',class= 'btn btn-success pull-right',id='publish')
+            hr(id='stream')
 
 
          .span2
@@ -44,8 +45,5 @@ block content
               p(class='text-info')     #{user.name}
               <strong>location :</strong>
               p(class="text-success")   #{user.location.name}
-block scripts
-    script(src='/javascript/jquery.js')
-    script(src='/javascript/load.js')
 
         

@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , auth = require('./routes/auth')
   , login = require('./routes/login')
+  , success = require('./routes/success')
   ,post = require('./routes/post')
   , user = require('./routes/user')
   , http = require('http')
@@ -52,10 +53,11 @@ app.get('/auth/facebook', auth.facebook);
 app.get('/',accessChecker, routes.index);
 app.get('/login',accessChecker_1, login.login);
 app.post('/post',post.post);
+app.get('/user',accessChecker,user.show);
 app.get('/logout',function(req,res){
 req.session.destroy();
 res.redirect('/');
-})
+});
 
 
 http.createServer(app).listen(app.get('port'), function(){
